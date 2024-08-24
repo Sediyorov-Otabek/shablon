@@ -14,10 +14,15 @@ const Home = () => {
   const { data: categories } = useFetch("products/category-list");
   console.log(data);
   const products = (
-    <ul>
-      <li onClick={() => setCategory("")}>All</li>
+    <ul className="flex mb-5 overflow-x-auto whitespace-nowrap gap-4">
+      <li
+        className="border hover:shadow-md rounded-xl px-2"
+        onClick={() => setCategory("")}
+      >
+        All
+      </li>
       {categories?.map((all) => (
-        <li key={all}>
+        <li className="border rounded-xl px-2" key={all}>
           <button onClick={() => setCategory(all)}>
             {all.split("-").join(" ")}
           </button>
@@ -29,7 +34,6 @@ const Home = () => {
     <div>
       <Hero />
       <Feature />
-      <Category data={data?.products} />
       {products}
       <Product data={data?.products} />
     </div>

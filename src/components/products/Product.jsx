@@ -57,8 +57,8 @@ const Product = ({ data, title }) => {
     </div>
   ));
   return (
-    <div className="container mx-auto">
-      <div className="grid items-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
+    <div className="container items-center justify-center mx-auto">
+      <div className="grid items-center justify-center sm:grid-cols-2 md:grid-cols-3 lg:grid-cols-4 gap-2">
         {items}
       </div>
     </div>
