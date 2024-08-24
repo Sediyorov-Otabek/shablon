@@ -3,7 +3,7 @@ import Hero from "../../components/hero/hero";
 import Feature from "../../components/featuries/Feature";
 import Product from "../../components/products/Product";
 import { useFetch } from "../../hooks/useFetch";
-import Category from "../../components/category/Category";
+
 const Home = () => {
   const [category, setCategory] = useState("");
   const { data, loading } = useFetch(
