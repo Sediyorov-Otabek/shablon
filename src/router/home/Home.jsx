@@ -14,7 +14,7 @@ const Home = () => {
   const { data: categories } = useFetch("products/category-list");
   console.log(data);
   const products = (
-    <ul className="flex mb-5 overflow-x-auto whitespace-nowrap gap-4">
+    <ul className="flex mb-5 overflow-x-auto whitespace-nowrap py-3 gap-4">
       <li
         className="border hover:shadow-md rounded-xl px-2"
         onClick={() => setCategory("")}

@@ -34,10 +34,12 @@ const Header = () => {
             <CiSearch />
           </form>
         </div>
-        <div className=" hidden sm:flex md:flex lg:flex items-center whitespace-nowrap">
-          <CiLocationOn />
-          <p>Your Location</p>
-        </div>
+        <NavLink to="/resume">
+          <div className=" hidden sm:flex md:flex lg:flex items-center whitespace-nowrap">
+            <CiLocationOn />
+            <p>Your Resume</p>
+          </div>
+        </NavLink>
         <div className="flex open__menu items-center gap-6">
           <NavLink to="/wishlist">
             <div className="flex items-center">
