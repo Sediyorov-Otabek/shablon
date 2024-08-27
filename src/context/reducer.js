@@ -35,6 +35,10 @@ export const reducer = (state, action) => {
           cart: state.cart.filter((item) => item.id !== action.payload.id),
         };
       }
+    case "LOGIN":
+      return { ...state, token: action.payload };
+    case "LOGOUT":
+      return { ...state, token: null };
     default:
       return state;
   }
