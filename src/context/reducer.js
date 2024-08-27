@@ -1,45 +1,64 @@
-export const initialState = {
+export const initialState = JSON.parse(localStorage.getItem("store")) || {
   son: 9,
   wishlist: [],
   cart: [],
   token: null,
 };
 export const reducer = (state, action) => {
+  let memory = {};
   switch (action.type) {
     case "INC":
       return { ...state, son: state.son + 1 };
     case "ADD_TO_WISHLIST":
-      let Index = state.wishlist.findIndex(
+      let index = state.wishlist.findIndex(
         (item) => item.id === action.payload.id
       );
-      if (Index < 0) {
-        return { ...state, wishlist: [...state.wishlist, action.payload] };
+      if (index < 0) {
+        memory = { ...state, wishlist: [...state.wishlist, action.payload] };
+        saveStorege(memory);
+        return memory;
       } else {
-        return {
+        memory = {
           ...state,
           wishlist: state.wishlist.filter(
             (item) => item.id !== action.payload.id
           ),
         };
+        saveStorege(memory);
+        return memory;
       }
     case "CART":
-      let index = state.cart.findIndex((item) => item.id === action.payload.id);
-      if (index < 0) {
-        return {
+      let cartIndex = state.cart.findIndex(
+        (item) => item.id === action.payload.id
+      );
+      if (cartIndex < 0) {
+        // Item not in cart, so add it
+        memory = {
           ...state,
-          cart: [...state.cart, action.payload],
+          cart: [...state.cart, { ...action.payload, quantity: 1 }],
         };
       } else {
-        return {
+        // Item is in cart, so remove it
+        memory = {
           ...state,
           cart: state.cart.filter((item) => item.id !== action.payload.id),
         };
       }
+      saveStorege(memory);
+      return memory;
+
     case "LOGIN":
-      return { ...state, token: action.payload };
+      memory = { ...state, token: action.payload };
+      saveStorege(memory);
+      return memory;
     case "LOGOUT":
-      return { ...state, token: null };
+      memory = { ...state, token: null };
+      saveStorege(memory);
+      return memory;
     default:
       return state;
   }
 };
+function saveStorege(memory) {
+  localStorage.setItem("store", JSON.stringify(memory));
+}
